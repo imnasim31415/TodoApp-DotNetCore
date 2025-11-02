@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LJkE/Dl4c8Y=",
+  "dgSpecHash": "HvyYsRSBGZz/KHp6DjdqO+VoEm2oiN9zMp6hbp/j1ZwgADALyBLUXZU/kXtFDkTe7TYXMVGAOGNjjKaQo2qfeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\imnas\\Documents\\DotNet\\TodoApp\\TodoApp\\TodoApp.csproj",
+  "projectFilePath": "/home/nasim/projects/TodoApp-DotNetCore/TodoApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
