@@ -1,50 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TodoApp.Data;
 using TodoApp.Models;
+using TodoApp.Services;
 
-namespace TodoApp.Pages
+namespace TodoApp.Pages.Todos
 {
     public class IndexModel : PageModel
     {
-        private readonly TodoService _service;
+        private readonly ITodoService _todoService;
 
-        public IndexModel(TodoService service)
+        public IndexModel(ITodoService todoService)
         {
-            _service = service;
+            _todoService = todoService;
         }
 
-        public List<TodoItem> Items { get; set; } = new();
+        public IEnumerable Todos { get; set; } = new List();
+        public int TotalCount { get; set; }
+        public int CompletedCount { get; set; }
 
-        [BindProperty]
-        public string? NewTitle { get; set; }
+        [TempData]
+        public string? SuccessMessage { get; set; }
+        
+        [TempData]
+        public string? ErrorMessage { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Items = _service.GetAll();
+            Todos = await _todoService.GetAllTodosAsync();
+            var stats = await _todoService.GetStatisticsAsync();
+            TotalCount = stats.total;
+            CompletedCount = stats.completed;
         }
 
-        public IActionResult OnPostAdd()
+        public async Task OnPostToggleAsync(int id)
         {
-            if (!string.IsNullOrWhiteSpace(NewTitle))
-                _service.Add(NewTitle);
-            return RedirectToPage();
-        }
+            var success = await _todoService.ToggleCompletionAsync(id);
+            
+            if (success)
+                SuccessMessage = "Todo status updated successfully!";
+            else
+                ErrorMessage = "Failed to update todo status.";
 
-        public IActionResult OnPostToggle(int id)
-        {
-            var item = _service.Get(id);
-            if (item != null)
-            {
-                item.IsDone = !item.IsDone;
-                _service.Update(item);
-            }
-            return RedirectToPage();
-        }
-
-        public IActionResult OnPostDelete(int id)
-        {
-            _service.Delete(id);
             return RedirectToPage();
         }
     }

@@ -29,3 +29,4 @@
 /home/nasim/projects/TodoApp-DotNetCore/obj/Debug/net8.0/TodoApp.pdb
 /home/nasim/projects/TodoApp-DotNetCore/obj/Debug/net8.0/TodoApp.genruntimeconfig.cache
 /home/nasim/projects/TodoApp-DotNetCore/obj/Debug/net8.0/ref/TodoApp.dll
+/home/nasim/projects/TodoApp-DotNetCore/obj/Debug/net8.0/TodoApp.csproj.AssemblyReference.cache
