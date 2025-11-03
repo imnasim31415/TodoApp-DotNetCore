@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using TodoApp.Models;
 
 namespace TodoApp.Data
